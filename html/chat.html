@@ -1,57 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REVOLT CHAT - Room</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVOLT CHAT - Global Room</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 2px solid #ff0000;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            color: #ff0000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: 0 0 5px #ff0000;
+        }
+
+        .nav-title {
+            color: #ff0000;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .nav-mini-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-mini-icons a {
+            color: #3b3bff;
+            transition: color 0.2s;
+        }
+
+        .nav-mini-icons a:hover {
+            color: #ff0000;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar-left {
+            width: 200px;
+            border-right: 2px solid #ff0000;
+            padding: 20px;
+        }
+
+        .room-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .messages-display {
+            flex: 1;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ff0000, inset 0 0 10px rgba(255,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 15px;
+        }
+
+        .message-input {
+            flex: 1;
+            background: transparent;
+            border: 2px solid #ff0000;
+            border-radius: 25px;
+            padding: 15px 20px;
+            color: white;
+            box-shadow: 0 0 10px #ff0000;
+            outline: none;
+        }
+        
+        .message-input::placeholder {
+            color: #666;
+        }
+
+        .send-btn {
+            background: transparent;
+            border: 2px solid #ff0000;
+            color: #ff0000;
+            border-radius: 25px;
+            padding: 0 30px;
+            font-weight: bold;
+            box-shadow: 0 0 10px #ff0000;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .send-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+        }
+
+        .sidebar-right {
+            width: 250px;
+            border-left: 2px solid #ff0000;
+            padding: 20px;
+        }
+
+        .online-count {
+            color: #ff0000;
+            font-weight: bold;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
-<div class="wave-bg"></div>
+    <div class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="back-btn"><i data-lucide="arrow-left" size="20"></i></a>
+            <div class="nav-title">REVOLT CHAT</div>
+        </div>
+        <div class="nav-mini-icons">
+            <a href="chat.html"><i data-lucide="message-square" size="20"></i></a>
+            <a href="profile.html"><i data-lucide="user" size="20"></i></a>
+            <a href="friends.html"><i data-lucide="users" size="20"></i></a>
+            <a href="gems.html"><i data-lucide="gem" size="20"></i></a>
+            <a href="wallet.html"><i data-lucide="wallet" size="20"></i></a>
+            <a href="auth.html"><i data-lucide="key" size="20"></i></a>
+            <a href="settings.html"><i data-lucide="settings" size="20"></i></a>
+        </div>
+    </div>
 
-<div id="chatpage" class="page-container">
-  <div class="chat-header">
-    <div class="header-left">
-      <a href="../index.html" class="box-back-btn"><i data-lucide="arrow-left"></i></a>
-      <a href="../index.html" class="header-logo">REVOLT CHAT</a>
-    </div>
-    <div class="header-icons">
-      <a href="chat.html" class="header-icon"><i data-lucide="message-square"></i></a>
-      <a href="profile.html" class="header-icon"><i data-lucide="user"></i></a>
-      <a href="friends.html" class="header-icon"><i data-lucide="users"></i></a>
-      <a href="gems.html" class="header-icon"><i data-lucide="gem"></i></a>
-      <a href="wallet.html" class="header-icon"><i data-lucide="wallet"></i></a>
-      <a href="auth.html" class="header-icon"><i data-lucide="key"></i></a>
-      <a href="settings.html" class="header-icon"><i data-lucide="settings"></i></a>
-    </div>
-  </div>
-  
-  <div class="chat-body">
-    <div class="sidebar left-sidebar">
-      <div class="room active">Global Room</div>
-    </div>
-    
-    <div class="chat-area">
-      <div class="messages" id="messages-container"></div>
-      
-      <div class="input-area">
-        <input type="text" id="message-input" placeholder="Type a message...">
-        <button id="send-btn">Send</button>
-      </div>
-    </div>
-    
-    <div class="sidebar right-sidebar">
-      <div class="online-header" id="online-count">0 revolters online</div>
-      <div id="online-users-list"></div>
-    </div>
-  </div>
-</div>
+    <div class="main-container">
+        <div class="sidebar-left">
+            <div class="room-title">Global Room</div>
+        </div>
 
-<script src="../js/shared.js"></script>
-<script type="module" src="../js/chat.js"></script>
-<script>lucide.createIcons();</script>
+        <div class="chat-area">
+            <div class="messages-display"></div>
+            <div class="input-area">
+                <input type="text" class="message-input" placeholder="Type a message...">
+                <button class="send-btn">Send</button>
+            </div>
+        </div>
+
+        <div class="sidebar-right">
+            <div class="online-count">0 revolters online</div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

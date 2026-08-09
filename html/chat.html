@@ -3,50 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REVOLT CHAT - Global Room</title>
+    <title>REVOLT CHAT</title>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="../css/chat.css">
 </head>
 <body>
     <div class="navbar">
         <div class="nav-left">
-            <a href="index.html" class="back-btn"><i data-lucide="arrow-left" size="20"></i></a>
-            <div class="nav-title">REVOLT CHAT</div>
+            <a href="../home.html" class="back-btn">
+                <i data-lucide="arrow-left" size="24"></i>
+            </a>
+            <div class="nav-title">REVOLT</div>
         </div>
         <div class="nav-mini-icons">
-            <a href="chat.html"><i data-lucide="message-square" size="20"></i></a>
-            <a href="profile.html"><i data-lucide="user" size="20"></i></a>
-            <a href="friends.html"><i data-lucide="users" size="20"></i></a>
-            <a href="gems.html"><i data-lucide="gem" size="20"></i></a>
-            <a href="wallet.html"><i data-lucide="wallet" size="20"></i></a>
-            <a href="auth.html"><i data-lucide="key" size="20"></i></a>
-            <a href="settings.html"><i data-lucide="settings" size="20"></i></a>
-            <a href="#" id="logout-btn"><i data-lucide="log-out" size="20"></i></a>
+            <a href="profile.html"><i data-lucide="user" size="24"></i></a>
+            <a href="friends.html"><i data-lucide="users" size="24"></i></a>
+            <a href="gems.html"><i data-lucide="gem" size="24"></i></a>
+            <a href="wallet.html"><i data-lucide="wallet" size="24"></i></a>
+            <a href="settings.html"><i data-lucide="settings" size="24"></i></a>
+            <a href="#" id="logout-btn"><i data-lucide="log-out" size="24"></i></a>
         </div>
     </div>
 
     <div class="main-container">
         <div id="side-panel" class="sidebar-left">
-            <h2>Global Room</h2>
+            <h2>Rooms</h2>
+            <ul id="online-users-list">
+                <li class="room active" data-room="General" style="cursor: pointer; padding: 5px 0;">General</li>
+                <li class="room" data-room="Gaming" style="cursor: pointer; padding: 5px 0;">Gaming</li>
+                <li class="room" data-room="Yap" style="cursor: pointer; padding: 5px 0;">Yap</li>
+                <li class="room" data-room="GOATS" style="cursor: pointer; padding: 5px 0;">GOATS</li>
+                <li class="room" data-room="REVOLTERS" style="cursor: pointer; padding: 5px 0;">REVOLTERS</li>
+            </ul>
         </div>
 
         <div id="chat-app">
             <div id="messages-container"></div>
             <div id="input-container">
-                <input type="text" id="message-input" placeholder="Type a message...">
+                <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
                 <button id="send-button">Send</button>
             </div>
         </div>
-
-        <div id="side-panel" class="sidebar-right">
-            <h2>Online: <span id="online-count">0</span></h2>
-            <ul id="online-users-list"></ul>
-        </div>
     </div>
 
-    <script type="module" src="chat.js"></script>
     <script>
         lucide.createIcons();
     </script>
+    <script type="module" src="../js/chat.js"></script>
 </body>
 </html>

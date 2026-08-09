@@ -6,46 +6,96 @@
     <title>REVOLT CHAT</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../css/chat.css">
+    <style>
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .nav-mini-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color, #e60000);
+            color: var(--text-color, #fff);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin: 0 3px;
+        }
+
+        .nav-mini-icons a:hover {
+            background: rgba(230, 0, 0, 0.2);
+            box-shadow: 0 0 8px #e60000;
+        }
+
+        .room {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            transition: all 0.2s ease;
+            color: #888;
+        }
+
+        .room.active {
+            background-color: rgba(230, 0, 0, 0.2);
+            color: #e60000 !important;
+            font-weight: bold;
+            border-left: 3px solid #e60000;
+        }
+    </style>
 </head>
 <body>
+    <canvas id="snow-canvas"></canvas>
+
     <div class="navbar">
         <div class="nav-left">
             <a href="../home.html" class="back-btn">
-                <i data-lucide="arrow-left" size="24"></i>
+                <i data-lucide="arrow-left" size="20"></i>
             </a>
             <div class="nav-title">REVOLT</div>
         </div>
         <div class="nav-mini-icons">
-            <a href="profile.html"><i data-lucide="user" size="24"></i></a>
-            <a href="friends.html"><i data-lucide="users" size="24"></i></a>
-            <a href="gems.html"><i data-lucide="gem" size="24"></i></a>
-            <a href="wallet.html"><i data-lucide="wallet" size="24"></i></a>
-            <a href="settings.html"><i data-lucide="settings" size="24"></i></a>
-            <a href="#" id="logout-btn"><i data-lucide="log-out" size="24"></i></a>
+            <a href="profile.html"><i data-lucide="user" size="18"></i></a>
+            <a href="friends.html"><i data-lucide="users" size="18"></i></a>
+            <a href="gems.html"><i data-lucide="gem" size="18"></i></a>
+            <a href="wallet.html"><i data-lucide="wallet" size="18"></i></a>
+            <a href="accounts.html"><i data-lucide="user-check" size="18"></i></a>
+            <a href="settings.html"><i data-lucide="settings" size="18"></i></a>
+            <a href="#" id="logout-btn"><i data-lucide="log-out" size="18"></i></a>
         </div>
     </div>
 
     <div class="main-container">
         <div id="side-panel" class="sidebar-left">
             <h2>Rooms</h2>
-            <ul id="online-users-list">
-                <li class="room active" data-room="General" style="cursor: pointer; padding: 5px 0;">General</li>
-                <li class="room" data-room="Gaming" style="cursor: pointer; padding: 5px 0;">Gaming</li>
-                <li class="room" data-room="Yap" style="cursor: pointer; padding: 5px 0;">Yap</li>
-                <li class="room" data-room="GOATS" style="cursor: pointer; padding: 5px 0;">GOATS</li>
-                <li class="room" data-room="REVOLTERS" style="cursor: pointer; padding: 5px 0;">REVOLTERS</li>
+            <ul id="online-users-list" style="list-style: none; padding: 0;">
+                <li class="room active" data-room="General">General</li>
+                <li class="room" data-room="Gaming">Gaming</li>
+                <li class="room" data-room="Yap">Yap</li>
+                <li class="room" data-room="GOATS">GOATS</li>
+                <li class="room" data-room="REVOLTERS">REVOLTERS</li>
             </ul>
         </div>
 
         <div id="chat-app">
             <div id="messages-container"></div>
-            <div id="input-container">
+            <form id="input-container">
                 <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
-                <button id="send-button">Send</button>
-            </div>
+                <button type="submit" id="send-button">Send</button>
+            </form>
         </div>
     </div>
 
+    <script src="../js/particles.js"></script>
     <script>
         lucide.createIcons();
     </script>

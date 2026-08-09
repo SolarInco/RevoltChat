@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getDatabase, ref, onValue, set, onDisconnect } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDWnr-9qpfzW_y-LMuTorItQTUHJVvhLDk",
@@ -16,122 +15,98 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const rtdb = getDatabase(app);
 
-let currentUsername = null;
+const messageInput = document.getElementById('message-input');
+const messagesContainer = document.getElementById('messages-container');
+const roomElements = document.querySelectorAll('.room');
+const logoutBtn = document.getElementById('logout-btn');
 
-lucide.createIcons();
+let currentUser = null;
+let currentUsername = "Unknown User";
+let currentRoom = "General";
+let unsubscribe = null;
 
 onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-        window.location.href = "auth.html";
-        return;
-    }
-
-    try {
+    if (user) {
+        currentUser = user;
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().username) {
+        if (userDoc.exists()) {
             currentUsername = userDoc.data().username;
-        } else {
-            await signOut(auth);
-            window.location.href = "auth.html";
-            return;
         }
-    } catch (error) {
-        console.error(error);
+        loadMessages(currentRoom);
+    } else {
+        window.location.href = "../index.html";
     }
+});
 
-    const userStatusRef = ref(rtdb, '/status/' + user.uid);
-    set(userStatusRef, { state: 'online', username: currentUsername });
-    onDisconnect(userStatusRef).remove();
-
-    const messagesQuery = query(collection(db, "messages"), orderBy("createdAt", "asc"));
-
-    onSnapshot(messagesQuery, (snapshot) => {
-        const container = document.getElementById("messages-container");
-        if (!container) return;
-        
-        container.innerHTML = ""; 
-
-        snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            let timeString = "Just now";
-            if (data.createdAt) {
-                const date = data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt);
-                timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            }
-
-            const sender = data.username;
-            const isMe = user.uid === data.uid;
-
-            const msgDiv = document.createElement("div");
-            msgDiv.className = `message ${isMe ? "sent" : "received"}`;
-            
-            msgDiv.innerHTML = `
-                <div class="message-info">
-                    <span class="sender-id"><i data-lucide="user" style="width:14px; height:14px;"></i> ${sender}</span>
-                    <span class="timestamp">${timeString}</span>
-                </div>
-                <div class="message-text">${escapeHtml(data.text || "")}</div>
-            `;
-            container.appendChild(msgDiv);
+roomElements.forEach(room => {
+    room.addEventListener('click', (e) => {
+        roomElements.forEach(r => {
+            r.classList.remove('active');
+            r.style.color = "var(--text-color)";
         });
-        
-        lucide.createIcons();
-        container.scrollTop = container.scrollHeight;
+        e.currentTarget.classList.add('active');
+        e.currentTarget.style.color = "var(--title-color)";
+        currentRoom = e.currentTarget.getAttribute('data-room');
+        loadMessages(currentRoom);
     });
 });
 
-const onlineCountRef = ref(rtdb, '/status');
-onValue(onlineCountRef, (snapshot) => {
-    const data = snapshot.val();
-    const listElement = document.getElementById("online-users-list");
-    const countElement = document.getElementById("online-count");
+function loadMessages(room) {
+    if (unsubscribe) unsubscribe();
+    messagesContainer.innerHTML = '';
     
-    listElement.innerHTML = "";
-    let count = 0;
-    
-    if (data) {
-        for (const uid in data) {
-            if (data[uid].state === 'online' && data[uid].username) {
-                count++;
-                const li = document.createElement("li");
-                li.innerHTML = `<i data-lucide="user-check"></i> ${escapeHtml(data[uid].username)}`;
-                listElement.appendChild(li);
-            }
-        }
-    }
-    
-    countElement.innerText = count;
-    lucide.createIcons();
-});
+    const q = query(
+        collection(db, "messages"), 
+        where("room", "==", room),
+        orderBy("createdAt", "asc")
+    );
 
-function sendMessage() {
-    const input = document.getElementById("message-input");
-    const text = input.value.trim().substring(0, 30); 
+    unsubscribe = onSnapshot(q, (snapshot) => {
+        messagesContainer.innerHTML = '';
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            const messageDiv = document.createElement('div');
+            const isSentByMe = data.uid === currentUser.uid;
+            
+            messageDiv.className = `message ${isSentByMe ? 'sent' : 'received'}`;
+            messageDiv.innerHTML = `
+                <div class="message-info">
+                    <span class="sender-id">${data.username}</span>
+                </div>
+                <div class="message-text">${data.text}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+        });
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+}
+
+document.getElementById('send-button').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const text = messageInput.value.trim();
+    if (!text || !currentUser) return;
     
-    if (text.length > 0 && auth.currentUser && currentUsername) {
-        input.value = "";
-        addDoc(collection(db, "messages"), {
+    messageInput.value = '';
+    
+    try {
+        await addDoc(collection(db, "messages"), {
             text: text,
-            uid: auth.currentUser.uid,
+            room: currentRoom,
+            uid: currentUser.uid,
             username: currentUsername,
             createdAt: serverTimestamp()
-        }).catch(err => console.error(err));
+        });
+    } catch (error) {
+        alert("Failed to send message.");
     }
-}
-
-function escapeHtml(text) {
-    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-}
-
-document.getElementById("send-button").addEventListener("click", sendMessage);
-document.getElementById("message-input").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendMessage();
 });
 
-document.getElementById("logout-btn").addEventListener("click", () => {
-    signOut(auth).then(() => {
-        window.location.href = "auth.html";
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+            window.location.href = "../index.html";
+        });
     });
-});
+}

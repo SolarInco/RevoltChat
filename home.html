@@ -6,6 +6,8 @@
     <title>REVOLT CHAT - Home</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+
         :root {
             --bg-color: #000000;
             --text-color: #ffffff;
@@ -30,28 +32,50 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .title {
             color: var(--title-color);
+            font-family: 'Fredoka', cursive, sans-serif;
             font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            margin-bottom: 60px;
-            text-shadow: var(--neon-glow);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px rgba(230, 0, 0, 0.8), 3px 3px 0px #000;
+            text-align: center;
         }
 
         .menu-grid {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         @keyframes float-icon {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
@@ -59,15 +83,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-decoration: none;
             color: #3b3bff;
-            transition: color 0.2s;
+            transition: transform 0.2s, color 0.2s;
             animation: float-icon 3s ease-in-out infinite;
         }
 
         .menu-item:nth-child(even) {
             animation-delay: 1.5s;
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #3b3bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 10px rgba(59, 59, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .icon-circle {
+            border-color: var(--title-color);
+            box-shadow: var(--neon-glow);
+            transform: scale(1.1);
         }
 
         .menu-item:hover {
@@ -77,45 +120,53 @@
         .menu-item span {
             color: var(--text-color);
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
+    <canvas id="snow-canvas"></canvas>
 
-    <div class="title">REVOLT</div>
+    <div class="content-wrapper">
+        <div class="title">Revolt - Revolt Chat</div>
 
-    <div class="menu-grid">
-        <a href="html/chat.html" class="menu-item">
-            <i data-lucide="message-square" size="50"></i>
-            <span>Chat</span>
-        </a>
-        <a href="html/profile.html" class="menu-item">
-            <i data-lucide="user" size="50"></i>
-            <span>Profile</span>
-        </a>
-        <a href="html/friends.html" class="menu-item">
-            <i data-lucide="users" size="50"></i>
-            <span>Friends</span>
-        </a>
-        <a href="html/gems.html" class="menu-item">
-            <i data-lucide="gem" size="50"></i>
-            <span>Gems</span>
-        </a>
-        <a href="html/wallet.html" class="menu-item">
-            <i data-lucide="wallet" size="50"></i>
-            <span>Wallet</span>
-        </a>
-        <a href="html/settings.html" class="menu-item">
-            <i data-lucide="settings" size="50"></i>
-            <span>Settings</span>
-        </a>
-        <a href="index.html" class="menu-item">
-            <i data-lucide="log-out" size="50"></i>
-            <span>Logout</span>
-        </a>
+        <div class="menu-grid">
+            <a href="html/chat.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="message-square" size="32"></i></div>
+                <span>Chat</span>
+            </a>
+            <a href="html/profile.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="user" size="32"></i></div>
+                <span>Profile</span>
+            </a>
+            <a href="html/friends.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="users" size="32"></i></div>
+                <span>Friends</span>
+            </a>
+            <a href="html/gems.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="gem" size="32"></i></div>
+                <span>Gems</span>
+            </a>
+            <a href="html/wallet.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="wallet" size="32"></i></div>
+                <span>Wallet</span>
+            </a>
+            <a href="html/accounts.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="user-check" size="32"></i></div>
+                <span>Accounts</span>
+            </a>
+            <a href="html/settings.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="settings" size="32"></i></div>
+                <span>Settings</span>
+            </a>
+            <a href="index.html" class="menu-item">
+                <div class="icon-circle"><i data-lucide="log-out" size="32"></i></div>
+                <span>Logout</span>
+            </a>
+        </div>
     </div>
 
+    <script src="js/particles.js"></script>
     <script>
         lucide.createIcons();
     </script>

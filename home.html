@@ -6,99 +6,113 @@
     <title>REVOLT CHAT - Home</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --title-color: #e60000;
+            --border-color: #e60000;
+            --header-bg: #0a0000;
+            --neon-glow: 0 0 10px #e60000, inset 0 0 5px #e60000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
         }
 
-        h1 {
-            color: #ff0000;
-            font-size: 5rem;
+        .title {
+            color: var(--title-color);
+            font-size: 3.5rem;
             font-weight: 900;
             letter-spacing: 3px;
             margin-bottom: 60px;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+            text-shadow: var(--neon-glow);
         }
 
-        .nav-icons {
+        .menu-grid {
             display: flex;
-            gap: 30px;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
         }
 
-        .icon-item {
+        @keyframes float-icon {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .menu-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            cursor: pointer;
+            gap: 15px;
             text-decoration: none;
-            color: white;
-        }
-
-        .icon-circle {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 2px solid #ff0000;
-            box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: #3b3bff;
-            transition: all 0.2s ease-in-out;
+            transition: color 0.2s;
+            animation: float-icon 3s ease-in-out infinite;
         }
 
-        .icon-item:hover .icon-circle {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px #ff0000, inset 0 0 15px #ff0000;
+        .menu-item:nth-child(even) {
+            animation-delay: 1.5s;
         }
 
-        .icon-label {
-            font-size: 1rem;
-            font-weight: 700;
+        .menu-item:hover {
+            color: var(--title-color);
+        }
+
+        .menu-item span {
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 1.1rem;
         }
     </style>
 </head>
 <body>
 
-    <h1>REVOLT CHAT</h1>
+    <div class="title">REVOLT</div>
 
-    <div class="nav-icons">
-        <a href="chat.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="message-square"></i></div>
-            <div class="icon-label">Chat</div>
+    <div class="menu-grid">
+        <a href="html/chat.html" class="menu-item">
+            <i data-lucide="message-square" size="50"></i>
+            <span>Chat</span>
         </a>
-        <a href="profile.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="user"></i></div>
-            <div class="icon-label">Profile</div>
+        <a href="html/profile.html" class="menu-item">
+            <i data-lucide="user" size="50"></i>
+            <span>Profile</span>
         </a>
-        <a href="friends.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="users"></i></div>
-            <div class="icon-label">Friends</div>
+        <a href="html/friends.html" class="menu-item">
+            <i data-lucide="users" size="50"></i>
+            <span>Friends</span>
         </a>
-        <a href="gems.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="gem"></i></div>
-            <div class="icon-label">Rewards</div>
+        <a href="html/gems.html" class="menu-item">
+            <i data-lucide="gem" size="50"></i>
+            <span>Gems</span>
         </a>
-        <a href="wallet.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="wallet"></i></div>
-            <div class="icon-label">Wallet</div>
+        <a href="html/wallet.html" class="menu-item">
+            <i data-lucide="wallet" size="50"></i>
+            <span>Wallet</span>
         </a>
-        <a href="auth.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="key"></i></div>
-            <div class="icon-label">Accounts</div>
+        <a href="html/settings.html" class="menu-item">
+            <i data-lucide="settings" size="50"></i>
+            <span>Settings</span>
         </a>
-        <a href="settings.html" class="icon-item">
-            <div class="icon-circle"><i data-lucide="settings"></i></div>
-            <div class="icon-label">Settings</div>
+        <a href="index.html" class="menu-item">
+            <i data-lucide="log-out" size="50"></i>
+            <span>Logout</span>
         </a>
     </div>
 

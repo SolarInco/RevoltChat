@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getDatabase, ref, onValue, set, onDisconnect } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
@@ -18,7 +18,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const rtdb = getDatabase(app);
 
-let currentUsername = "Revolter";
+let currentUsername = null;
+
+lucide.createIcons();
 
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -30,21 +32,20 @@ onAuthStateChanged(auth, async (user) => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists() && userDoc.data().username) {
             currentUsername = userDoc.data().username;
+        } else {
+            await signOut(auth);
+            window.location.href = "auth.html";
+            return;
         }
     } catch (error) {
-        console.error("Error loading user profile:", error);
+        console.error(error);
     }
 
-    // Set up presence in Realtime Database
     const userStatusRef = ref(rtdb, '/status/' + user.uid);
     set(userStatusRef, { state: 'online', username: currentUsername });
     onDisconnect(userStatusRef).remove();
 
-    // Query messages in ascending order
-    const messagesQuery = query(
-        collection(db, "messages"), 
-        orderBy("createdAt", "asc")
-    );
+    const messagesQuery = query(collection(db, "messages"), orderBy("createdAt", "asc"));
 
     onSnapshot(messagesQuery, (snapshot) => {
         const container = document.getElementById("messages-container");
@@ -54,14 +55,13 @@ onAuthStateChanged(auth, async (user) => {
 
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
-            
             let timeString = "Just now";
             if (data.createdAt) {
                 const date = data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt);
                 timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             }
 
-            const sender = data.username ? data.username : "Revolter";
+            const sender = data.username;
             const isMe = user.uid === data.uid;
 
             const msgDiv = document.createElement("div");
@@ -69,61 +69,69 @@ onAuthStateChanged(auth, async (user) => {
             
             msgDiv.innerHTML = `
                 <div class="message-info">
-                    <span class="sender-id">${sender}</span>
+                    <span class="sender-id"><i data-lucide="user" style="width:14px; height:14px;"></i> ${sender}</span>
                     <span class="timestamp">${timeString}</span>
                 </div>
                 <div class="message-text">${escapeHtml(data.text || "")}</div>
             `;
-
             container.appendChild(msgDiv);
         });
-
+        
+        lucide.createIcons();
         container.scrollTop = container.scrollHeight;
     });
 });
 
-// Presence listener for online user counter
 const onlineCountRef = ref(rtdb, '/status');
 onValue(onlineCountRef, (snapshot) => {
     const data = snapshot.val();
-    const count = data ? Object.keys(data).length : 0;
+    const listElement = document.getElementById("online-users-list");
     const countElement = document.getElementById("online-count");
     
-    if (countElement) {
-        countElement.innerText = count;
+    listElement.innerHTML = "";
+    let count = 0;
+    
+    if (data) {
+        for (const uid in data) {
+            if (data[uid].state === 'online' && data[uid].username) {
+                count++;
+                const li = document.createElement("li");
+                li.innerHTML = `<i data-lucide="user-check"></i> ${escapeHtml(data[uid].username)}`;
+                listElement.appendChild(li);
+            }
+        }
     }
+    
+    countElement.innerText = count;
+    lucide.createIcons();
 });
 
 function sendMessage() {
     const input = document.getElementById("message-input");
-    const text = input.value.trim();
+    const text = input.value.trim().substring(0, 30); 
     
-    if (text.length > 0 && auth.currentUser) {
+    if (text.length > 0 && auth.currentUser && currentUsername) {
         input.value = "";
         addDoc(collection(db, "messages"), {
             text: text,
             uid: auth.currentUser.uid,
             username: currentUsername,
             createdAt: serverTimestamp()
-        }).catch((error) => {
-            console.error("Error adding document: ", error);
-        });
+        }).catch(err => console.error(err));
     }
 }
 
-function escapeHtml(unsafeText) {
-    return unsafeText
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
+function escapeHtml(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
 document.getElementById("send-button").addEventListener("click", sendMessage);
-
 document.getElementById("message-input").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
+    if (e.key === "Enter") sendMessage();
+});
+
+document.getElementById("logout-btn").addEventListener("click", () => {
+    signOut(auth).then(() => {
+        window.location.href = "auth.html";
+    });
 });

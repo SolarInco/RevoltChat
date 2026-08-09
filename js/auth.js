@@ -48,7 +48,7 @@ document.getElementById("auth-action-btn").addEventListener("click", async () =>
     try {
         if (isLoginMode) {
             await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = "index.html";
+            window.location.href = "home.html";
         } else {
             if (!username) {
                 errorTxt.innerText = "Username is required for Sign Up.";
@@ -63,7 +63,7 @@ document.getElementById("auth-action-btn").addEventListener("click", async () =>
                 createdAt: new Date()
             });
 
-            window.location.href = "index.html";
+            window.location.href = "home.html";
         }
     } catch (error) {
         errorTxt.innerText = error.message.replace("Firebase: ", "");

@@ -3,31 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REVOLT CHAT</title>
-    <link rel="stylesheet" href="css/chat.css">
+    <title>REVOLT CHAT - Home</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #ff0000;
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b3bff;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .icon-item:hover .icon-circle {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #ff0000, inset 0 0 15px #ff0000;
+        }
+
+        .icon-label {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
-    <div id="side-panel">
-        <div class="panel-header">
-            <h2><i data-lucide="radio" class="icon-pulse"></i> Live: <span id="online-count">0</span></h2>
-        </div>
-        <ul id="online-users-list">
-        </ul>
-    </div>
-    
-    <div id="chat-app">
-        <div id="header">
-            <h1><i data-lucide="messages-square"></i> REVOLT CHAT</h1>
-            <button id="logout-btn"><i data-lucide="log-out"></i></button>
-        </div>
-        <div id="messages-container"></div>
-        <div id="input-container">
-            <input type="text" id="message-input" placeholder="Type a message (max 30 chars)..." autocomplete="off" maxlength="30">
-            <button id="send-button"><i data-lucide="send"></i></button>
-        </div>
+
+    <h1>REVOLT CHAT</h1>
+
+    <div class="nav-icons">
+        <a href="chat.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="message-square"></i></div>
+            <div class="icon-label">Chat</div>
+        </a>
+        <a href="profile.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="user"></i></div>
+            <div class="icon-label">Profile</div>
+        </a>
+        <a href="friends.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="users"></i></div>
+            <div class="icon-label">Friends</div>
+        </a>
+        <a href="gems.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="gem"></i></div>
+            <div class="icon-label">Rewards</div>
+        </a>
+        <a href="wallet.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="wallet"></i></div>
+            <div class="icon-label">Wallet</div>
+        </a>
+        <a href="auth.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="key"></i></div>
+            <div class="icon-label">Accounts</div>
+        </a>
+        <a href="settings.html" class="icon-item">
+            <div class="icon-circle"><i data-lucide="settings"></i></div>
+            <div class="icon-label">Settings</div>
+        </a>
     </div>
 
-    <script type="module" src="js/chat.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

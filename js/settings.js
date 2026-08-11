@@ -1,38 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const toggleParticles = document.getElementById('toggle-particles');
-  const saveBtn = document.getElementById('save-btn');
-  const themeBoxes = document.querySelectorAll('.theme-box');
+    lucide.createIcons();
+    
+    const toggleParticles = document.getElementById('toggle-particles');
+    const saveBtn = document.getElementById('save-settings-btn');
+    const themeBoxes = document.querySelectorAll('.theme-box');
+    const particlesDiv = document.getElementById('particles-js');
 
-  let activeTheme = localStorage.getItem('theme') || 'default';
-  let previewTheme = activeTheme;
-  let activeParticles = localStorage.getItem('particles') !== 'off';
+    let activeTheme = localStorage.getItem('revolt_theme') || 'default';
+    let previewTheme = activeTheme;
+    let activeParticles = localStorage.getItem('revolt_particles') !== 'off';
 
-  toggleParticles.checked = activeParticles;
-
-  themeBoxes.forEach(box => {
-    if (box.getAttribute('data-theme') === activeTheme) {
-      box.classList.add('selected');
+    toggleParticles.checked = activeParticles;
+    if (!activeParticles && particlesDiv) {
+        particlesDiv.style.display = 'none';
     }
-  });
 
-  themeBoxes.forEach(box => {
-    box.addEventListener('click', (e) => {
-      themeBoxes.forEach(b => b.classList.remove('selected'));
-      e.target.classList.add('selected');
+    document.body.className = activeTheme === 'default' ? '' : `theme-${activeTheme}`;
 
-      previewTheme = e.target.getAttribute('data-theme');
-      document.body.className = previewTheme === 'default' ? '' : `theme-${previewTheme}`;
+    themeBoxes.forEach(box => {
+        if (box.getAttribute('data-theme') === activeTheme) {
+            themeBoxes.forEach(b => b.classList.remove('selected'));
+            box.classList.add('selected');
+        }
     });
-  });
 
-  saveBtn.addEventListener('click', () => {
-    localStorage.setItem('theme', previewTheme);
-    localStorage.setItem('particles', toggleParticles.checked ? 'on' : 'off');
-    
-    activeTheme = previewTheme;
-    
-    if (window.showNotification) {
-      window.showNotification("Settings saved and applied");
-    }
-  });
+    themeBoxes.forEach(box => {
+        box.addEventListener('click', (e) => {
+            themeBoxes.forEach(b => b.classList.remove('selected'));
+            e.target.classList.add('selected');
+
+            previewTheme = e.target.getAttribute('data-theme');
+            document.body.className = previewTheme === 'default' ? '' : `theme-${previewTheme}`;
+        });
+    });
+
+    toggleParticles.addEventListener('change', (e) => {
+        if (particlesDiv) {
+            particlesDiv.style.display = e.target.checked ? 'block' : 'none';
+        }
+    });
+
+    saveBtn.addEventListener('click', () => {
+        localStorage.setItem('revolt_theme', previewTheme);
+        localStorage.setItem('revolt_particles', toggleParticles.checked ? 'on' : 'off');
+        
+        activeTheme = previewTheme;
+        
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = "Saved!";
+        setTimeout(() => {
+            saveBtn.textContent = originalText;
+        }, 2000);
+        
+        if (window.showNotification) {
+            window.showNotification("Settings saved");
+        }
+    });
 });

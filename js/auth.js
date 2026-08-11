@@ -74,7 +74,7 @@ authActionBtn.addEventListener('click', async () => {
                 status: "online"
             }, { merge: true });
 
-            window.location.href = "html/home.html";
+            window.location.href = "home.html";
             
         } else {
             if (!username) {
@@ -91,7 +91,7 @@ authActionBtn.addEventListener('click', async () => {
                 status: "online"
             });
 
-            window.location.href = "html/home.html";
+            window.location.href = "home.html";
         }
     } catch (error) {
         authError.textContent = error.message.replace("Firebase: ", "");

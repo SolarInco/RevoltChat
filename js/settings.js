@@ -41,10 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     saveBtn.addEventListener('click', () => {
+        const particlesSetting = toggleParticles.checked ? 'on' : 'off';
+        
         localStorage.setItem('revolt_theme', previewTheme);
-        localStorage.setItem('revolt_particles', toggleParticles.checked ? 'on' : 'off');
+        localStorage.setItem('revolt_particles', particlesSetting);
         
         activeTheme = previewTheme;
+
+        if (typeof firebase !== 'undefined' && firebase.auth().currentUser) {
+            const userId = firebase.auth().currentUser.uid;
+            firebase.firestore().collection('users').doc(userId).set({
+                theme: previewTheme,
+                particles: particlesSetting
+            }, { merge: true });
+        }
         
         const originalText = saveBtn.textContent;
         saveBtn.textContent = "Saved!";

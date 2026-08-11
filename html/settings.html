@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REVOLT CHAT - Settings</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVOLT CHAT - Settings</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -13,55 +14,39 @@
 <div class="wave-bg"></div>
 
 <div class="top-nav-area">
-  <a href="../index.html" class="box-back-btn"><i data-lucide="arrow-left"></i></a>
+    <a href="../index.html" class="box-back-btn"><i data-lucide="arrow-left"></i></a>
 </div>
 
 <div id="settingspage" class="page-container">
-  <div class="large-settings">
-    
-    <div class="theme-boxes">
-      <div class="theme-box selected" data-theme="default" style="background: black; color: #e60000; border: 2px solid #e60000;">Revolt</div>
-      <div class="theme-box" data-theme="coral" style="background: #ADD8E6; color: #00008B; border: 2px solid #00008B;">Coral</div>
-      <div class="theme-box" data-theme="darkgreen" style="background: black; color: #00FF00; border: 2px solid #00FF00;">Dark Green</div>
-      <div class="theme-box" data-theme="usa" style="background: repeating-linear-gradient(45deg, red, red 10px, blue 10px, blue 20px); color: white; border: 2px solid white; text-shadow: 1px 1px 2px black;">USA</div>
-      <div class="theme-box" data-theme="amber" style="background: #FFBF00; color: black; border: 2px solid black;">Amber</div>
-      <div class="theme-box" data-theme="lightgreen" style="background: white; color: #90EE90; border: 2px solid #90EE90;">Light Green</div>
-      <div class="theme-box" data-theme="rose" style="background: #FFC0CB; color: white; border: 2px solid white; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Rose</div>
+    <div class="large-settings">
+        <h2 class="settings-title">Themes</h2>
+        
+        <div class="theme-boxes">
+            <div class="theme-box selected" data-theme="default" style="background: black; color: #e60000; border: 2px solid #e60000;">Revolt</div>
+            <div class="theme-box" data-theme="coral" style="background: #ADD8E6; color: #00008B; border: 2px solid #00008B;">Coral</div>
+            <div class="theme-box" data-theme="darkgreen" style="background: black; color: #00FF00; border: 2px solid #00FF00;">Dark Green</div>
+            <div class="theme-box" data-theme="usa" style="background: repeating-linear-gradient(45deg, red, red 10px, blue 10px, blue 20px); color: white; border: 2px solid white; text-shadow: 1px 1px 2px black;">USA</div>
+            <div class="theme-box" data-theme="amber" style="background: #FFBF00; color: black; border: 2px solid black;">Amber</div>
+            <div class="theme-box" data-theme="lightgreen" style="background: white; color: #90EE90; border: 2px solid #90EE90;">Light Green</div>
+            <div class="theme-box" data-theme="rose" style="background: #FFC0CB; color: white; border: 2px solid white; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Rose</div>
+        </div>
+        
+        <div class="settings-toggles">
+            <div class="toggle-container">
+                <span class="toggle-label">Enable Particles</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-particles">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-actions">
+            <button class="save-btn" id="save-settings-btn">Save Changes</button>
+        </div>
     </div>
-    
-    <div class="settings-actions">
-      <button class="save-btn" id="save-settings-btn">Save Changes</button>
-    </div>
-    
-  </div>
 </div>
 
-<script src="../js/shared.js"></script>
-<script>
-  lucide.createIcons();
-  
-  const boxes = document.querySelectorAll('.theme-box');
-  const currentTheme = localStorage.getItem('revolt_theme') || 'default';
-  
-  boxes.forEach(box => {
-    if(box.dataset.theme === currentTheme) {
-      boxes.forEach(b => b.classList.remove('selected'));
-      box.classList.add('selected');
-    }
-    
-    box.addEventListener('click', () => {
-      boxes.forEach(b => b.classList.remove('selected'));
-      box.classList.add('selected');
-      document.body.className = box.dataset.theme === 'default' ? '' : `theme-${box.dataset.theme}`;
-      localStorage.setItem('revolt_theme', box.dataset.theme);
-    });
-  });
-
-  document.getElementById('save-settings-btn').addEventListener('click', () => {
-    if (window.showNotification) {
-      window.showNotification('Settings Saved!');
-    }
-  });
-</script>
+<script src="../js/settings.js"></script>
 </body>
 </html>

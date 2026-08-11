@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDWnr-9qpfzW_y-LMuTorItQTUHJVvhLDk",
@@ -22,11 +22,14 @@ const sendButton = document.getElementById('send-button');
 const messagesContainer = document.getElementById('messages-container');
 const roomElements = document.querySelectorAll('.room');
 const logoutBtn = document.getElementById('logout-btn');
+const revoltUsersList = document.getElementById('revolt-users-list');
+const userCountSpan = document.getElementById('user-count');
 
 let currentUser = null;
 let currentUsername = "Unknown User";
 let currentRoom = "General";
 let unsubscribe = null;
+let usersUnsubscribe = null;
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -40,6 +43,7 @@ onAuthStateChanged(auth, async (user) => {
             currentUsername = user.email ? user.email.split('@')[0] : "User";
         }
         loadMessages(currentRoom);
+        loadRevolters();
     } else {
         window.location.href = "../index.html";
     }
@@ -55,20 +59,49 @@ roomElements.forEach(room => {
     });
 });
 
+function loadRevolters() {
+    if (usersUnsubscribe) usersUnsubscribe();
+    const usersRef = collection(db, "users");
+    
+    usersUnsubscribe = onSnapshot(usersRef, (snapshot) => {
+        revoltUsersList.innerHTML = '';
+        let count = 0;
+        snapshot.forEach((docSnap) => {
+            count++;
+            const userData = docSnap.data();
+            const li = document.createElement('li');
+            li.innerHTML = `<i data-lucide="user" size="16" color="#e60000"></i> <span>${userData.username || "User"}</span>`;
+            revoltUsersList.appendChild(li);
+        });
+        userCountSpan.textContent = count;
+        lucide.createIcons();
+    });
+}
+
 function loadMessages(room) {
     if (unsubscribe) unsubscribe();
     messagesContainer.innerHTML = '';
     
     const q = query(
         collection(db, "messages"), 
-        where("room", "==", room),
-        orderBy("createdAt", "asc")
+        where("room", "==", room)
     );
 
     unsubscribe = onSnapshot(q, (snapshot) => {
         messagesContainer.innerHTML = '';
+        const docs = [];
+        
         snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
+            docs.push(docSnap.data());
+        });
+
+        docs.sort((a, b) => {
+            const timeA = a.createdAt ? a.createdAt.toMillis() : Date.now();
+            const timeB = b.createdAt ? b.createdAt.toMillis() : Date.now();
+            return timeA - timeB;
+        });
+
+        docs.forEach((data) => {
             const messageDiv = document.createElement('div');
             const isSentByMe = currentUser && data.uid === currentUser.uid;
             

@@ -75,7 +75,7 @@
     </div>
 
     <div class="main-container">
-        <div id="side-panel" class="sidebar-left">
+        <div id="side-panel">
             <h2>Rooms</h2>
             <ul id="online-users-list" style="list-style: none; padding: 0;">
                 <li class="room active" data-room="General">General</li>
@@ -92,6 +92,12 @@
                 <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
                 <button type="submit" id="send-button">Send</button>
             </form>
+        </div>
+
+        <div id="right-panel">
+            <h2>Revolt Counter</h2>
+            <div id="revolt-count-display">Total Users: <span id="user-count">0</span></div>
+            <ul id="revolt-users-list"></ul>
         </div>
     </div>
 

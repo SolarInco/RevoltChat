@@ -128,7 +128,9 @@ html, body {
 .icon-pulse { animation: pulse 2s infinite; }
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-body.theme-coral {
+/* THEMES - Applied to both html and body */
+
+html.theme-coral, body.theme-coral {
     --bg-color: #ADD8E6;
     --text-color: #00008B;
     --title-color: #0000CD;
@@ -139,7 +141,7 @@ body.theme-coral {
     --neon-glow: 0 0 10px #00008B;
 }
 
-body.theme-darkgreen {
+html.theme-darkgreen, body.theme-darkgreen {
     --bg-color: #000000;
     --text-color: #00FF00;
     --title-color: #00FF00;
@@ -150,7 +152,7 @@ body.theme-darkgreen {
     --neon-glow: 0 0 10px #00FF00;
 }
 
-body.theme-usa {
+html.theme-usa, body.theme-usa {
     --bg-color: #ffffff;
     --text-color: #00008B;
     --title-color: #B22222;
@@ -161,7 +163,7 @@ body.theme-usa {
     --neon-glow: 0 0 10px #B22222;
 }
 
-body.theme-amber {
+html.theme-amber, body.theme-amber {
     --bg-color: #1a1500;
     --text-color: #FFBF00;
     --title-color: #FFBF00;
@@ -172,7 +174,7 @@ body.theme-amber {
     --neon-glow: 0 0 10px #FFBF00;
 }
 
-body.theme-lightgreen {
+html.theme-lightgreen, body.theme-lightgreen {
     --bg-color: #ffffff;
     --text-color: #006400;
     --title-color: #32CD32;
@@ -183,7 +185,7 @@ body.theme-lightgreen {
     --neon-glow: 0 0 10px #32CD32;
 }
 
-body.theme-rose {
+html.theme-rose, body.theme-rose {
     --bg-color: #FFC0CB;
     --text-color: #8B0000;
     --title-color: #C71585;

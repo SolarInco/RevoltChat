@@ -1,12 +1,12 @@
 :root {
-  --bg-color: #000000;
-  --text-color: #ffffff;
-  --title-color: #e60000;
-  --border-color: #e60000;
-  --btn-bg: #000000;
-  --chat-bg: rgba(230, 0, 0, 0.08);
-  --header-bg: #0a0000;
-  --neon-glow: 0 0 10px #e60000, inset 0 0 5px #e60000;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --title-color: #e60000;
+    --border-color: #e60000;
+    --btn-bg: #000000;
+    --chat-bg: rgba(230, 0, 0, 0.08);
+    --header-bg: #0a0000;
+    --neon-glow: 0 0 10px #e60000, inset 0 0 5px #e60000;
 }
 
 * { box-sizing: border-box; }
@@ -127,3 +127,69 @@ html, body {
 .lucide { width: 18px; height: 18px; }
 .icon-pulse { animation: pulse 2s infinite; }
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+body.theme-coral {
+    --bg-color: #ADD8E6;
+    --text-color: #00008B;
+    --title-color: #0000CD;
+    --border-color: #00008B;
+    --btn-bg: #87CEEB;
+    --chat-bg: rgba(0, 0, 139, 0.1);
+    --header-bg: #e0f2f7;
+    --neon-glow: 0 0 10px #00008B;
+}
+
+body.theme-darkgreen {
+    --bg-color: #000000;
+    --text-color: #00FF00;
+    --title-color: #00FF00;
+    --border-color: #00FF00;
+    --btn-bg: #000000;
+    --chat-bg: rgba(0, 255, 0, 0.1);
+    --header-bg: #051405;
+    --neon-glow: 0 0 10px #00FF00;
+}
+
+body.theme-usa {
+    --bg-color: #ffffff;
+    --text-color: #00008B;
+    --title-color: #B22222;
+    --border-color: #00008B;
+    --btn-bg: #f0f0f0;
+    --chat-bg: rgba(178, 34, 34, 0.1);
+    --header-bg: #f8f8f8;
+    --neon-glow: 0 0 10px #B22222;
+}
+
+body.theme-amber {
+    --bg-color: #1a1500;
+    --text-color: #FFBF00;
+    --title-color: #FFBF00;
+    --border-color: #FFBF00;
+    --btn-bg: #000000;
+    --chat-bg: rgba(255, 191, 0, 0.1);
+    --header-bg: #0a0800;
+    --neon-glow: 0 0 10px #FFBF00;
+}
+
+body.theme-lightgreen {
+    --bg-color: #ffffff;
+    --text-color: #006400;
+    --title-color: #32CD32;
+    --border-color: #90EE90;
+    --btn-bg: #f5fff5;
+    --chat-bg: rgba(144, 238, 144, 0.2);
+    --header-bg: #e6ffe6;
+    --neon-glow: 0 0 10px #32CD32;
+}
+
+body.theme-rose {
+    --bg-color: #FFC0CB;
+    --text-color: #8B0000;
+    --title-color: #C71585;
+    --border-color: #ffffff;
+    --btn-bg: #FFB6C1;
+    --chat-bg: rgba(255, 255, 255, 0.4);
+    --header-bg: #FF69B4;
+    --neon-glow: 0 0 10px #ffffff;
+}

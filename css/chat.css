@@ -84,26 +84,24 @@ html, body {
     display: flex;
     flex: 1;
     overflow: hidden;
+    padding: 20px;
+    gap: 20px;
 }
 
-#side-panel {
+#side-panel, #right-panel {
     width: 240px;
     min-width: 240px;
     background-color: var(--header-bg);
     padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--neon-glow);
     display: flex;
     flex-direction: column;
+    z-index: 2;
 }
 
-.sidebar-left {
-    border-right: 1px solid var(--border-color);
-}
-
-.sidebar-right {
-    border-left: 1px solid var(--border-color);
-}
-
-#side-panel h2 {
+#side-panel h2, #right-panel h2 {
     font-size: 1.1rem;
     margin: 0;
     padding-bottom: 15px;
@@ -119,7 +117,23 @@ html, body {
     gap: 10px;
 }
 
-#online-users-list li {
+#revolt-count-display {
+    padding-top: 15px;
+    font-weight: bold;
+    color: var(--title-color);
+    font-size: 0.9rem;
+    padding-bottom: 10px;
+}
+
+#revolt-users-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+#revolt-users-list li {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -131,7 +145,12 @@ html, body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-color);
+    background-color: var(--header-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--neon-glow);
+    overflow: hidden;
+    z-index: 2;
 }
 
 #messages-container {
@@ -143,15 +162,15 @@ html, body {
     gap: 12px;
 }
 
-#messages-container::-webkit-scrollbar {
+#messages-container::-webkit-scrollbar, #revolt-users-list::-webkit-scrollbar {
     width: 8px;
 }
 
-#messages-container::-webkit-scrollbar-track {
-    background: var(--bg-color);
+#messages-container::-webkit-scrollbar-track, #revolt-users-list::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-#messages-container::-webkit-scrollbar-thumb {
+#messages-container::-webkit-scrollbar-thumb, #revolt-users-list::-webkit-scrollbar-thumb {
     background: var(--border-color);
     border-radius: 4px;
 }
@@ -238,10 +257,4 @@ html, body {
 .sender-id {
     font-weight: 600;
     color: var(--title-color);
-}
-
-.timestamp {
-    font-style: normal;
-    font-size: 0.7rem;
-    opacity: 0.7;
 }

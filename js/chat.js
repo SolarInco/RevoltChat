@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp, where, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDWnr-9qpfzW_y-LMuTorItQTUHJVvhLDk",
@@ -31,17 +31,36 @@ let currentRoom = "General";
 let unsubscribe = null;
 let usersUnsubscribe = null;
 
+window.addEventListener('beforeunload', () => {
+    if (currentUser) {
+        updateDoc(doc(db, "users", currentUser.uid), {
+            status: "offline"
+        }).catch(err => console.log(err));
+    }
+});
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUser = user;
         try {
             const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists()) {
-                currentUsername = userDoc.data().username || "User";
+            
+            if (!userDoc.exists()) {
+                await signOut(auth);
+                window.location.href = "../index.html";
+                return; 
             }
+            
+            currentUsername = userDoc.data().username || "User";
+            
+            await updateDoc(doc(db, "users", user.uid), {
+                status: "online"
+            });
+            
         } catch (e) {
-            currentUsername = user.email ? user.email.split('@')[0] : "User";
+            console.error(e);
         }
+        
         loadMessages(currentRoom);
         loadRevolters();
     } else {
@@ -61,16 +80,20 @@ roomElements.forEach(room => {
 
 function loadRevolters() {
     if (usersUnsubscribe) usersUnsubscribe();
-    const usersRef = collection(db, "users");
     
-    usersUnsubscribe = onSnapshot(usersRef, (snapshot) => {
+    const q = query(
+        collection(db, "users"),
+        where("status", "==", "online")
+    );
+    
+    usersUnsubscribe = onSnapshot(q, (snapshot) => {
         revoltUsersList.innerHTML = '';
         let count = 0;
         snapshot.forEach((docSnap) => {
             count++;
             const userData = docSnap.data();
             const li = document.createElement('li');
-            li.innerHTML = `<i data-lucide="user" size="16" color="#e60000"></i> <span>${userData.username || "User"}</span>`;
+            li.innerHTML = `<i data-lucide="user" size="16" color="#00ff00"></i> <span>${userData.username || "User"}</span>`;
             revoltUsersList.appendChild(li);
         });
         userCountSpan.textContent = count;
@@ -116,7 +139,7 @@ function loadMessages(room) {
         });
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }, (error) => {
-        console.error("Error loading messages:", error);
+        console.error(error);
     });
 }
 
@@ -135,7 +158,7 @@ async function sendMessage() {
             createdAt: serverTimestamp()
         });
     } catch (error) {
-        console.error("Error sending message:", error);
+        console.error(error);
         alert("Failed to send message: " + error.message);
     }
 }
@@ -155,8 +178,13 @@ if (sendButton) {
 }
 
 if (logoutBtn) {
-    logoutBtn.addEventListener('click', (e) => {
+    logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
+        if (currentUser) {
+            await updateDoc(doc(db, "users", currentUser.uid), {
+                status: "offline"
+            });
+        }
         signOut(auth).then(() => {
             window.location.href = "../index.html";
         });

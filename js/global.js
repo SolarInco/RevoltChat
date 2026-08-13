@@ -1,41 +1,59 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDWnr-9qpfzW_y-LMuTorItQTUHJVvhLDk",
+  authDomain: "revolt-chat-4fada.firebaseapp.com",
+  databaseURL: "https://revolt-chat-4fada-default-rtdb.firebaseio.com/",
+  projectId: "revolt-chat-4fada",
+  storageBucket: "revolt-chat-4fada.firebasestorage.app",
+  messagingSenderId: "488624788181",
+  appId: "1:488624788181:web:1571ba31aafb8c1441c85c"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
 document.addEventListener('DOMContentLoaded', () => {
     const particlesDiv = document.getElementById('particles-js');
     const loadingScreen = document.getElementById('loading-screen');
 
-    if (typeof firebase !== 'undefined') {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                firebase.firestore().collection('users').doc(user.uid).get()
-                    .then((doc) => {
-                        if (doc.exists) {
-                            const data = doc.data();
-                            
-                            if (data.theme && data.theme !== 'default') {
-                                document.documentElement.classList.add(`theme-${data.theme}`);
-                                document.body.classList.add(`theme-${data.theme}`);
-                            } else {
-                                document.documentElement.className = '';
-                                document.body.className = '';
-                            }
-                            
-                            if (particlesDiv) {
-                                particlesDiv.style.display = data.particles === 'off' ? 'none' : 'block';
-                            }
-                        }
-                        if (loadingScreen) {
-                            loadingScreen.style.opacity = '0';
-                            setTimeout(() => loadingScreen.style.display = 'none', 500);
-                        }
-                    })
-                    .catch((error) => console.error(error));
-            } else {
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => loadingScreen.style.display = 'none', 500);
-                }
-            }
-        });
+    function hideLoading() {
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => loadingScreen.style.display = 'none', 500);
+        }
     }
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(userRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    if (data.theme && data.theme !== 'default') {
+                        document.documentElement.classList.add(`theme-${data.theme}`);
+                        document.body.classList.add(`theme-${data.theme}`);
+                    } else {
+                        document.documentElement.className = '';
+                        document.body.className = '';
+                    }
+                    
+                    if (particlesDiv) {
+                        particlesDiv.style.display = data.particles === 'off' ? 'none' : 'block';
+                    }
+                }
+            } catch (error) {}
+        }
+        hideLoading();
+    });
+
+    setTimeout(hideLoading, 3000);
 });
 
 window.showNotification = function(message) {

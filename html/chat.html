@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/chat.css">
     <style>
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; 
+        }
+
+      
+        
+        .navbar {
+            border-bottom: 1px solid var(--border-color);
+            background: color-mix(in srgb, var(--bg-color) 80%, black);
+        }
+
+        .nav-title {
+            color: var(--border-color);
+            text-shadow: 0 0 5px var(--border-color);
+        }
+
         .nav-mini-icons a {
             display: inline-flex;
             align-items: center;
@@ -15,16 +37,27 @@
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            border: 1px solid var(--border-color, #e60000);
-            color: var(--text-color, #fff);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             text-decoration: none;
             transition: all 0.2s ease;
             margin: 0 3px;
         }
 
         .nav-mini-icons a:hover {
-            background: rgba(230, 0, 0, 0.2);
-            box-shadow: var(--accent-glow);
+            background: color-mix(in srgb, var(--border-color) 20%, transparent);
+            box-shadow: 0 0 8px var(--border-color);
+        }
+
+        #side-panel, #right-panel {
+            border: 1px solid var(--border-color);
+            background: color-mix(in srgb, var(--bg-color) 90%, transparent);
+            box-shadow: 0 0 10px color-mix(in srgb, var(--border-color) 15%, transparent);
+        }
+
+        #side-panel h2, #right-panel h2 {
+            color: var(--border-color);
+            border-bottom: 1px solid color-mix(in srgb, var(--border-color) 30%, transparent);
         }
 
         .room {
@@ -33,24 +66,64 @@
             border-radius: 6px;
             margin-bottom: 4px;
             transition: all 0.2s ease;
-            color: #888;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .room:hover {
+            background: color-mix(in srgb, var(--border-color) 10%, transparent);
+            opacity: 1;
         }
 
         .room.active {
-            background-color: rgba(230, 0, 0, 0.2);
-            color: var(--border-color, #e60000) !important;
+            background-color: color-mix(in srgb, var(--border-color) 25%, transparent);
+            color: var(--border-color) !important;
             font-weight: bold;
-            border-left: 3px solid var(--border-color, #e60000);
+            border-left: 3px solid var(--border-color);
+            opacity: 1;
+        }
+
+        #revolt-count-display {
+            color: var(--border-color);
+            font-weight: bold;
+            text-shadow: 0 0 5px color-mix(in srgb, var(--border-color) 50%, transparent);
+            padding: 10px 0;
+        }
+
+        #input-container {
+            border-top: 1px solid var(--border-color);
+        }
+
+        #message-input {
+            border: 1px solid var(--border-color);
+            background: color-mix(in srgb, var(--bg-color) 70%, black);
+            color: var(--text-color);
+        }
+
+        #message-input:focus {
+            box-shadow: 0 0 5px var(--border-color);
+            outline: none;
+        }
+
+        #send-button {
+            background-color: var(--border-color);
+            color: var(--bg-color); 
+            font-weight: bold;
+            border: none;
+        }
+
+        #send-button:hover {
+            box-shadow: 0 0 10px var(--border-color);
+            filter: brightness(1.2);
         }
     </style>
 </head>
-<body>
-    <div id="particles-js"></div>
-    <div class="wave-bg"></div>
+<body style="background-color: var(--bg-color, #000);">
+    <canvas id="snow-canvas"></canvas>
 
     <div class="navbar">
         <div class="nav-left">
-            <a href="../home.html" class="back-btn">
+            <a href="../home.html" class="back-btn" style="color: var(--border-color);">
                 <i data-lucide="arrow-left" size="20"></i>
             </a>
             <div class="nav-title">REVOLT</div>
@@ -93,7 +166,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/particles.js"></script>
     <script>
         lucide.createIcons();
     </script>

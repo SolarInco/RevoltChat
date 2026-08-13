@@ -32,7 +32,7 @@ function loadParticles(status) {
 
     const rootStyles = getComputedStyle(document.body);
     let particleColor = rootStyles.getPropertyValue('--particle-hex').trim().replace(/['"]/g, '');
-    if (!particleColor) particleColor = "#e60000";
+    if (!particleColor) particleColor = "#ff0000";
 
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {

@@ -5,45 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REVOLT CHAT - Home</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
 
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --title-color: #e60000;
-            --border-color: #e60000;
-            --header-bg: #0a0000;
-            --neon-glow: 0 0 10px #e60000, inset 0 0 5px #e60000;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            position: relative;
-        }
-
-        #snow-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
         }
 
         .content-wrapper {
@@ -55,13 +26,13 @@
         }
 
         .title {
-            color: var(--title-color);
+            color: var(--border-color);
             font-family: 'Fredoka', cursive, sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
             letter-spacing: 2px;
             margin-bottom: 50px;
-            text-shadow: 0 0 15px rgba(230, 0, 0, 0.8), 3px 3px 0px #000;
+            text-shadow: 0 0 15px var(--border-color), 3px 3px 0px #000;
             text-align: center;
         }
 
@@ -85,7 +56,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: #3b3bff;
+            color: var(--text-color);
             transition: transform 0.2s, color 0.2s;
             animation: float-icon 3s ease-in-out infinite;
         }
@@ -98,34 +69,34 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            border: 2px solid #3b3bff;
+            border: 2px solid var(--text-color);
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 0 10px rgba(59, 59, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .menu-item:hover .icon-circle {
-            border-color: var(--title-color);
-            box-shadow: var(--neon-glow);
+            border-color: var(--border-color);
+            box-shadow: var(--accent-glow);
             transform: scale(1.1);
         }
 
         .menu-item:hover {
-            color: var(--title-color);
+            color: var(--border-color);
         }
 
         .menu-item span {
-            color: var(--text-color);
             font-weight: bold;
             font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <canvas id="snow-canvas"></canvas>
+    <div id="particles-js"></div>
+    <div class="wave-bg"></div>
 
     <div class="content-wrapper">
         <div class="title">Revolt Chat</div>
@@ -166,7 +137,7 @@
         </div>
     </div>
 
-    <script src="js/particles.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         lucide.createIcons();
     </script>

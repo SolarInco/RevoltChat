@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REVOLT CHAT - Gems</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Gems</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/gems.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+    <div id="loading-screen">
+        <div class="spinner"></div>
+    </div>
+    
+    <div id="particles-js"></div>
+    <div class="wave-bg"></div>
+    
+    <div class="top-nav-area">
+        <a href="../home.html" class="box-back-btn"><i data-lucide="arrow-left"></i></a>
+    </div>
 
-<div id="particles-js"></div>
-<div class="wave-bg"></div>
+    <div class="page-container">
+        <div class="gems-board">
+            <h2>Daily Rewards</h2>
+            <div id="days-container" class="days-container"></div>
+            <button id="collect-btn" class="save-btn">Loading...</button>
+        </div>
+    </div>
 
-<div class="top-nav-area">
-  <a href="../home.html" class="box-back-btn nav-link"><i data-lucide="arrow-left"></i></a>
-</div>
-
-<div id="loading-screen">
-  <div class="spinner"></div>
-</div>
-
-<div id="gemspage" class="page-container">
-  <div class="gems-board">
-    <h2>Daily Gem Rewards</h2>
-    <div class="days-container" id="days-container"></div>
-    <button id="collect-btn" class="save-btn">Loading...</button>
-  </div>
-</div>
-
-<script type="module" src="../js/gems.js"></script>
-<script>lucide.createIcons();</script>
-<script type="module" src="../js/global.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="../js/global.js"></script>
+    <script type="module" src="../js/gems.js"></script>
 </body>
 </html>

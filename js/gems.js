@@ -84,24 +84,32 @@ function renderBoard(canClaim, currentDay, isLoading) {
   rewards.forEach((amt, index) => {
     const dayNum = index + 1;
     const box = document.createElement('div');
-    box.className = 'day-box';
+    box.className = 'day-card';
     
-    if (dayNum === currentDay) {
-      box.classList.add('active');
+    if (dayNum < currentDay) {
+      box.classList.add('claimed');
+    } else if (dayNum === currentDay) {
+      if (canClaim) {
+        box.classList.add('active');
+      } else {
+        box.classList.add('claimed');
+      }
+    } else {
+      box.classList.add('locked');
     }
     
-    const label = document.createElement('span');
-    label.className = 'day-label';
-    label.textContent = `Day ${dayNum}`;
+    box.innerHTML = `
+        <div class="day-label">Day ${dayNum}</div>
+        <div class="gem-icon"><i data-lucide="gem" size="32"></i></div>
+        <div class="gem-amount">+${amt}</div>
+    `;
     
-    const gemText = document.createElement('span');
-    gemText.className = 'gem-amount';
-    gemText.textContent = amt;
-    
-    box.appendChild(label);
-    box.appendChild(gemText);
     daysContainer.appendChild(box);
   });
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 
   if (isLoading) {
     collectBtn.textContent = 'Loading...';
@@ -116,7 +124,7 @@ function renderBoard(canClaim, currentDay, isLoading) {
   } else {
     collectBtn.style.opacity = '1';
     collectBtn.style.cursor = 'pointer';
-    collectBtn.textContent = 'Collect Reward';
+    collectBtn.textContent = `Collect Day ${currentDay} Reward`;
     
     collectBtn.onclick = async () => {
       collectBtn.onclick = null;
@@ -141,6 +149,6 @@ async function processClaim() {
   renderBoard(false, userData.gemStreak, false);
   
   if (window.showNotification) {
-    window.showNotification(`Collected ${rewardAmount} gems!`);
+    window.showNotification(`Awesome! You collected ${rewardAmount} gems! 💎`);
   }
 }

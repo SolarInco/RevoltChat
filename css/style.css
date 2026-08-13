@@ -7,18 +7,25 @@
     --particle-hex: "#e60000";
 }
 
-.theme-coral {
-    --bg-color: #1a0f0c;
+.theme-dark-green {
+    --bg-color: #021102;
     --text-color: #ffffff;
-    --border-color: #ff7f50;
-    --particle-hex: "#ff7f50";
+    --border-color: #008000;
+    --particle-hex: "#008000";
 }
 
-.theme-rose {
-    --bg-color: #1a000d;
+.theme-light-green {
+    --bg-color: #051a05;
     --text-color: #ffffff;
-    --border-color: #ff007f;
-    --particle-hex: "#ff007f";
+    --border-color: #32cd32;
+    --particle-hex: "#32cd32";
+}
+
+.theme-coral {
+    --bg-color: #001f3f;
+    --text-color: #ffffff;
+    --border-color: #87ceeb;
+    --particle-hex: "#ffffff";
 }
 
 .theme-usa {
@@ -51,24 +58,25 @@ body {
 .theme-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin-top: 20px;
 }
 
 .theme-box {
-    flex: 1 1 calc(33.333% - 15px);
-    min-width: 120px;
-    padding: 15px;
-    border-radius: 8px;
+    flex: 1 1 calc(50% - 20px);
+    min-width: 160px;
+    padding: 25px;
+    border-radius: 12px;
     text-align: center;
     font-weight: bold;
+    font-size: 1.2rem;
     cursor: pointer;
-    border: 2px solid;
+    border: 3px solid;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .theme-box:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 }

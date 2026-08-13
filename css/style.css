@@ -3,6 +3,8 @@
     --text-color: #ffffff;
     --border-color: #e60000;
     --accent-glow: 0 0 10px #e60000;
+    --particle-hex: "#e60000";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23e60000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 body.theme-coral {
@@ -10,6 +12,8 @@ body.theme-coral {
     --text-color: #00008B;
     --border-color: #00008B;
     --accent-glow: 0 0 10px rgba(0, 0, 139, 0.5);
+    --particle-hex: "#00008B";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2300008B" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 body.theme-darkgreen {
@@ -17,6 +21,8 @@ body.theme-darkgreen {
     --text-color: #00FF00;
     --border-color: #00FF00;
     --accent-glow: 0 0 10px rgba(0, 255, 0, 0.5);
+    --particle-hex: "#00FF00";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2300FF00" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 body.theme-usa {
@@ -24,7 +30,8 @@ body.theme-usa {
     --text-color: #000080;
     --border-color: #ff0000;
     --accent-glow: 0 0 10px rgba(255, 0, 0, 0.5);
-    background: repeating-linear-gradient(45deg, #ffcccc, #ffcccc 10px, #ccccff 10px, #ccccff 20px) !important;
+    --particle-hex: "#000080";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ff0000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 body.theme-amber {
@@ -32,6 +39,8 @@ body.theme-amber {
     --text-color: #000000;
     --border-color: #000000;
     --accent-glow: 0 0 10px rgba(0, 0, 0, 0.5);
+    --particle-hex: "#000000";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23000000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 body.theme-lightgreen {
@@ -39,13 +48,17 @@ body.theme-lightgreen {
     --text-color: #006400;
     --border-color: #90EE90;
     --accent-glow: 0 0 10px rgba(144, 238, 144, 0.8);
+    --particle-hex: "#90EE90";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2390EE90" fill-opacity="0.3" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 body.theme-rose {
-    --bg-color: #FFC0CB;
-    --text-color: #ffffff;
-    --border-color: #ffffff;
-    --accent-glow: 0 0 10px rgba(255, 255, 255, 0.8);
+    --bg-color: #FFB6C1;
+    --text-color: #000000;
+    --border-color: #FF1493;
+    --accent-glow: 0 0 10px rgba(255, 20, 147, 0.5);
+    --particle-hex: "#FF1493";
+    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23FF1493" fill-opacity="0.3" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
 * {
@@ -64,6 +77,10 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+h1, h2, h3, .app-title {
+    color: var(--border-color);
+}
+
 #particles-js {
     position: fixed;
     top: 0;
@@ -80,11 +97,13 @@ body {
     left: 0;
     width: 100%;
     height: 150px;
-    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23e60000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+    background-image: var(--wave-svg);
+    background-repeat: repeat-x;
     background-size: cover;
     z-index: -1;
     animation: wave 15s linear infinite;
     pointer-events: none;
+    transition: background-image 0.3s ease;
 }
 
 @keyframes wave {
@@ -126,112 +145,6 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-}
-
-.gems-board {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 30px;
-    max-width: 700px;
-    width: 90%;
-    margin: 40px auto;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-}
-
-.gems-board h2 {
-    color: var(--border-color);
-    margin-bottom: 25px;
-    font-size: 2rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-}
-
-.days-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.day-card {
-    background: rgba(20, 20, 20, 0.9);
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 15px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.day-card.claimed {
-    opacity: 0.5;
-    border-color: #555;
-    filter: grayscale(100%);
-}
-
-.day-card.active {
-    border: 2px solid var(--border-color);
-    background: rgba(230, 0, 0, 0.1);
-    transform: scale(1.05);
-    box-shadow: var(--accent-glow);
-}
-
-.day-card.locked {
-    opacity: 0.7;
-}
-
-.day-label {
-    font-weight: bold;
-    color: #fff;
-}
-
-.gem-icon {
-    color: #3b3bff;
-}
-
-.day-card.active .gem-icon {
-    color: var(--border-color);
-    animation: pulse 2s infinite;
-}
-
-.gem-amount {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #4caf50;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-.save-btn {
-    background-color: var(--border-color);
-    color: #fff;
-    border: none;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-
-.save-btn:hover:not(:disabled) {
-    filter: brightness(1.2);
-    transform: translateY(-2px);
-}
-
-.save-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
 }
 
 #loading-screen {

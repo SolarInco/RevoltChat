@@ -25,17 +25,19 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 600px;
-            background: rgba(0, 0, 0, 0.7);
+            max-width: 700px;
+            background: color-mix(in srgb, var(--bg-color) 80%, black);
             border: 2px solid var(--border-color);
             border-radius: 10px;
-            padding: 20px;
+            padding: 30px;
             box-shadow: 0 0 15px color-mix(in srgb, var(--border-color) 40%, transparent);
         }
 
         h1 {
             color: var(--border-color);
             text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
         }
 
         .back-btn {
@@ -45,6 +47,7 @@
             text-decoration: none;
             margin-bottom: 20px;
             font-weight: bold;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -56,16 +59,19 @@
         <h1>Themes</h1>
         
         <div class="theme-grid">
-            <div class="theme-box" data-theme="default" style="background-color: #000000; border-color: #e60000; color: #e60000; box-shadow: 0 0 10px rgba(230, 0, 0, 0.4);">
+            <div class="theme-box" data-theme="default" style="background-color: #000000; border-color: #e60000; color: #e60000; box-shadow: 0 0 15px rgba(230, 0, 0, 0.5);">
                 Default
             </div>
-            <div class="theme-box" data-theme="coral" style="background-color: #1a0f0c; border-color: #ff7f50; color: #ff7f50; box-shadow: 0 0 10px rgba(255, 127, 80, 0.4);">
+            <div class="theme-box" data-theme="dark-green" style="background-color: #021102; border-color: #008000; color: #008000; box-shadow: 0 0 15px rgba(0, 128, 0, 0.5);">
+                Dark Green
+            </div>
+            <div class="theme-box" data-theme="light-green" style="background-color: #051a05; border-color: #32cd32; color: #32cd32; box-shadow: 0 0 15px rgba(50, 205, 50, 0.5);">
+                Light Green
+            </div>
+            <div class="theme-box" data-theme="coral" style="background: linear-gradient(135deg, #87ceeb 33%, #ffffff 33%, #ffffff 66%, #001f3f 66%); border-color: #87ceeb; color: #001f3f; text-shadow: 0 0 8px #ffffff, 0 0 8px #ffffff; box-shadow: 0 0 15px rgba(135, 206, 235, 0.5);">
                 Coral
             </div>
-            <div class="theme-box" data-theme="rose" style="background-color: #1a000d; border-color: #ff007f; color: #ff007f; box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);">
-                Rose
-            </div>
-            <div class="theme-box" data-theme="usa" style="background-color: #070b19; border-color: #e62b2b; color: #ffffff; box-shadow: 0 0 10px rgba(230, 43, 43, 0.4);">
+            <div class="theme-box" data-theme="usa" style="background: linear-gradient(135deg, #e62b2b 33%, #ffffff 33%, #ffffff 66%, #070b19 66%); border-color: #e62b2b; color: #070b19; text-shadow: 0 0 8px #ffffff, 0 0 8px #ffffff; box-shadow: 0 0 15px rgba(230, 43, 43, 0.5);">
                 USA
             </div>
         </div>

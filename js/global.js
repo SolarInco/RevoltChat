@@ -16,8 +16,67 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+function loadParticles(status) {
+    const pDiv = document.getElementById('particles-js');
+    if (!pDiv) return;
+
+    if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+    }
+    pDiv.innerHTML = '';
+
+    if (status === 'off') {
+        return;
+    }
+
+    const rootStyles = getComputedStyle(document.body);
+    let particleColor = rootStyles.getPropertyValue('--particle-hex').trim().replace(/['"]/g, '');
+    if (!particleColor) particleColor = "#e60000";
+
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: particleColor },
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: true },
+                size: { value: 4, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: particleColor,
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 1 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    const particlesDiv = document.getElementById('particles-js');
     const loadingScreen = document.getElementById('loading-screen');
 
     function hideLoading() {
@@ -37,18 +96,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = docSnap.data();
                     
                     if (data.theme && data.theme !== 'default') {
-                        document.documentElement.classList.add(`theme-${data.theme}`);
-                        document.body.classList.add(`theme-${data.theme}`);
+                        document.documentElement.className = `theme-${data.theme}`;
+                        document.body.className = `theme-${data.theme}`;
                     } else {
                         document.documentElement.className = '';
                         document.body.className = '';
                     }
                     
-                    if (particlesDiv) {
-                        particlesDiv.style.display = data.particles === 'off' ? 'none' : 'block';
-                    }
+                    setTimeout(() => {
+                        loadParticles(data.particles);
+                    }, 50);
+                } else {
+                    loadParticles('on');
                 }
-            } catch (error) {}
+            } catch (error) {
+                loadParticles('on');
+            }
+        } else {
+            loadParticles('on');
         }
         hideLoading();
     });

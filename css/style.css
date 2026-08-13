@@ -1,38 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
 
 :root {
-    --bg-color: #000000;
+    --bg-color: #050000;
     --text-color: #ffffff;
-    --border-color: #e60000;
-    --particle-hex: "#e60000";
+    --border-color: #ff0000;
+    --particle-hex: "#ff0000";
 }
 
-.theme-dark-green {
-    --bg-color: #021102;
+.theme-blue {
+    --bg-color: #000515;
     --text-color: #ffffff;
-    --border-color: #008000;
-    --particle-hex: "#008000";
+    --border-color: #007bff;
+    --particle-hex: "#007bff";
 }
 
-.theme-light-green {
-    --bg-color: #051a05;
+.theme-rose {
+    --bg-color: #15000a;
     --text-color: #ffffff;
-    --border-color: #32cd32;
-    --particle-hex: "#32cd32";
+    --border-color: #ff007f;
+    --particle-hex: "#ff007f";
 }
 
-.theme-coral {
-    --bg-color: #001f3f;
+.theme-amber {
+    --bg-color: #150600;
     --text-color: #ffffff;
-    --border-color: #87ceeb;
-    --particle-hex: "#ffffff";
+    --border-color: #ff5e00;
+    --particle-hex: "#ff5e00";
 }
 
-.theme-usa {
-    --bg-color: #070b19;
+.theme-lightning {
+    --bg-color: #151500;
     --text-color: #ffffff;
-    --border-color: #e62b2b;
-    --particle-hex: "#ffffff";
+    --border-color: #ffe600;
+    --particle-hex: "#ffe600";
+}
+
+.theme-mystic {
+    --bg-color: #0a0015;
+    --text-color: #ffffff;
+    --border-color: #9d00ff;
+    --particle-hex: "#9d00ff";
 }
 
 body {
@@ -42,7 +49,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #particles-js {
@@ -55,28 +62,35 @@ body {
     z-index: 1;
 }
 
+.theme-text {
+    color: var(--border-color) !important;
+}
+
 .theme-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    max-width: 700px;
+    max-width: 800px;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .theme-box {
-    flex: 1 1 calc(50% - 20px);
-    min-width: 160px;
-    padding: 25px;
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 180px;
+    padding: 30px 15px;
     border-radius: 12px;
     text-align: center;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
     border: 3px solid;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .theme-box:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
 }

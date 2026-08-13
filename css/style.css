@@ -1,84 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+
 :root {
     --bg-color: #000000;
     --text-color: #ffffff;
     --border-color: #e60000;
-    --accent-glow: 0 0 10px #e60000;
     --particle-hex: "#e60000";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23e60000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
 }
 
-body.theme-coral {
-    --bg-color: #ADD8E6;
-    --text-color: #00008B;
-    --border-color: #00008B;
-    --accent-glow: 0 0 10px rgba(0, 0, 139, 0.5);
-    --particle-hex: "#00008B";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2300008B" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+.theme-coral {
+    --bg-color: #1a0f0c;
+    --text-color: #ffffff;
+    --border-color: #ff7f50;
+    --particle-hex: "#ff7f50";
 }
 
-body.theme-darkgreen {
-    --bg-color: #000000;
-    --text-color: #00FF00;
-    --border-color: #00FF00;
-    --accent-glow: 0 0 10px rgba(0, 255, 0, 0.5);
-    --particle-hex: "#00FF00";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2300FF00" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+.theme-rose {
+    --bg-color: #1a000d;
+    --text-color: #ffffff;
+    --border-color: #ff007f;
+    --particle-hex: "#ff007f";
 }
 
-body.theme-usa {
-    --bg-color: #ffffff;
-    --text-color: #000080;
-    --border-color: #ff0000;
-    --accent-glow: 0 0 10px rgba(255, 0, 0, 0.5);
-    --particle-hex: "#000080";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ff0000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-}
-
-body.theme-amber {
-    --bg-color: #FFBF00;
-    --text-color: #000000;
-    --border-color: #000000;
-    --accent-glow: 0 0 10px rgba(0, 0, 0, 0.5);
-    --particle-hex: "#000000";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23000000" fill-opacity="0.2" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-}
-
-body.theme-lightgreen {
-    --bg-color: #ffffff;
-    --text-color: #006400;
-    --border-color: #90EE90;
-    --accent-glow: 0 0 10px rgba(144, 238, 144, 0.8);
-    --particle-hex: "#90EE90";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2390EE90" fill-opacity="0.3" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-}
-
-body.theme-rose {
-    --bg-color: #FFB6C1;
-    --text-color: #000000;
-    --border-color: #FF1493;
-    --accent-glow: 0 0 10px rgba(255, 20, 147, 0.5);
-    --particle-hex: "#FF1493";
-    --wave-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23FF1493" fill-opacity="0.3" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,192C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.theme-usa {
+    --bg-color: #070b19;
+    --text-color: #ffffff;
+    --border-color: #e62b2b;
+    --particle-hex: "#ffffff";
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-h1, h2, h3, .app-title {
-    color: var(--border-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 #particles-js {
@@ -87,90 +43,46 @@ h1, h2, h3, .app-title {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
     pointer-events: none;
+    z-index: 1;
 }
 
-.wave-bg {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+.theme-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
     width: 100%;
-    height: 150px;
-    background-image: var(--wave-svg);
-    background-repeat: repeat-x;
-    background-size: cover;
-    z-index: -1;
-    animation: wave 15s linear infinite;
-    pointer-events: none;
-    transition: background-image 0.3s ease;
+    max-width: 600px;
+    margin-top: 20px;
 }
 
-@keyframes wave {
-    0% { background-position-x: 0; }
-    100% { background-position-x: 1440px; }
-}
-
-.top-nav-area {
-    padding: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
-
-.box-back-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border: 2px solid var(--border-color);
+.theme-box {
+    flex: 1 1 calc(33.333% - 15px);
+    min-width: 120px;
+    padding: 15px;
     border-radius: 8px;
-    color: var(--text-color);
-    background: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
-    transition: all 0.2s ease;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--box-bg);
+    border: 2px solid var(--box-main);
+    color: #ffffff;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--box-main) 40%, transparent);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.box-back-btn:hover {
-    background: rgba(230, 0, 0, 0.2);
-    box-shadow: var(--accent-glow);
-    transform: scale(1.05);
+.theme-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--box-main);
 }
 
-.page-container {
-    padding-top: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.usa-box {
+    background: linear-gradient(135deg, #070b19 30%, #e62b2b 100%);
+    border: 2px solid #e62b2b;
+    color: #ffffff;
+    box-shadow: 0 0 10px color-mix(in srgb, #e62b2b 40%, transparent);
 }
 
-#loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 255, 255, 0.1);
-    border-top: 5px solid var(--border-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.usa-box:hover {
+    box-shadow: 0 0 15px #e62b2b;
 }

@@ -8,7 +8,6 @@
         const savedTheme = localStorage.getItem('revolt_theme');
         if (savedTheme && savedTheme !== 'default') {
             document.documentElement.className = `theme-${savedTheme}`;
-            document.documentElement.style.backgroundColor = 'var(--bg-color)';
         }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -57,16 +56,16 @@
         <h1>Themes</h1>
         
         <div class="theme-grid">
-            <div class="theme-box" data-theme="default" style="--box-main: #e60000; --box-bg: #000000;">
+            <div class="theme-box" data-theme="default" style="background-color: #000000; border-color: #e60000; color: #e60000; box-shadow: 0 0 10px rgba(230, 0, 0, 0.4);">
                 Default
             </div>
-            <div class="theme-box" data-theme="coral" style="--box-main: #ff7f50; --box-bg: #1a0f0c;">
+            <div class="theme-box" data-theme="coral" style="background-color: #1a0f0c; border-color: #ff7f50; color: #ff7f50; box-shadow: 0 0 10px rgba(255, 127, 80, 0.4);">
                 Coral
             </div>
-            <div class="theme-box" data-theme="rose" style="--box-main: #ff007f; --box-bg: #1a000d;">
+            <div class="theme-box" data-theme="rose" style="background-color: #1a000d; border-color: #ff007f; color: #ff007f; box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);">
                 Rose
             </div>
-            <div class="theme-box usa-box" data-theme="usa">
+            <div class="theme-box" data-theme="usa" style="background-color: #070b19; border-color: #e62b2b; color: #ffffff; box-shadow: 0 0 10px rgba(230, 43, 43, 0.4);">
                 USA
             </div>
         </div>

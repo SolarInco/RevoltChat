@@ -35,6 +35,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s ease;
 }
 
 #particles-js {
@@ -64,25 +65,10 @@ body {
     text-align: center;
     font-weight: bold;
     cursor: pointer;
-    background-color: var(--box-bg);
-    border: 2px solid var(--box-main);
-    color: #ffffff;
-    box-shadow: 0 0 10px color-mix(in srgb, var(--box-main) 40%, transparent);
+    border: 2px solid;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .theme-box:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 15px var(--box-main);
-}
-
-.usa-box {
-    background: linear-gradient(135deg, #070b19 30%, #e62b2b 100%);
-    border: 2px solid #e62b2b;
-    color: #ffffff;
-    box-shadow: 0 0 10px color-mix(in srgb, #e62b2b 40%, transparent);
-}
-
-.usa-box:hover {
-    box-shadow: 0 0 15px #e62b2b;
 }

@@ -25,19 +25,22 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 700px;
-            background: color-mix(in srgb, var(--bg-color) 80%, black);
+            max-width: 850px;
+            background: color-mix(in srgb, var(--bg-color) 70%, #000000);
             border: 2px solid var(--border-color);
             border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 0 15px color-mix(in srgb, var(--border-color) 40%, transparent);
+            padding: 40px;
+            box-shadow: 0 0 20px color-mix(in srgb, var(--border-color) 40%, transparent);
+            transition: all 0.3s ease;
         }
 
         h1 {
             color: var(--border-color);
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 30px;
+            text-shadow: 0 0 10px color-mix(in srgb, var(--border-color) 50%, transparent);
+            transition: color 0.3s ease;
         }
 
         .back-btn {
@@ -48,6 +51,7 @@
             margin-bottom: 20px;
             font-weight: bold;
             font-size: 1.2rem;
+            transition: color 0.3s ease;
         }
     </style>
 </head>
@@ -59,20 +63,23 @@
         <h1>Themes</h1>
         
         <div class="theme-grid">
-            <div class="theme-box" data-theme="default" style="background-color: #000000; border-color: #e60000; color: #e60000; box-shadow: 0 0 15px rgba(230, 0, 0, 0.5);">
-                Default
+            <div class="theme-box" data-theme="default" style="background-color: #050000; border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);">
+                Revolt
             </div>
-            <div class="theme-box" data-theme="dark-green" style="background-color: #021102; border-color: #008000; color: #008000; box-shadow: 0 0 15px rgba(0, 128, 0, 0.5);">
-                Dark Green
+            <div class="theme-box" data-theme="blue" style="background-color: #000515; border-color: #007bff; color: #007bff; box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);">
+                Blue
             </div>
-            <div class="theme-box" data-theme="light-green" style="background-color: #051a05; border-color: #32cd32; color: #32cd32; box-shadow: 0 0 15px rgba(50, 205, 50, 0.5);">
-                Light Green
+            <div class="theme-box" data-theme="rose" style="background-color: #15000a; border-color: #ff007f; color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);">
+                Rose
             </div>
-            <div class="theme-box" data-theme="coral" style="background: linear-gradient(135deg, #87ceeb 33%, #ffffff 33%, #ffffff 66%, #001f3f 66%); border-color: #87ceeb; color: #001f3f; text-shadow: 0 0 8px #ffffff, 0 0 8px #ffffff; box-shadow: 0 0 15px rgba(135, 206, 235, 0.5);">
-                Coral
+            <div class="theme-box" data-theme="amber" style="background-color: #150600; border-color: #ff5e00; color: #ff5e00; box-shadow: 0 0 15px rgba(255, 94, 0, 0.5);">
+                Amber
             </div>
-            <div class="theme-box" data-theme="usa" style="background: linear-gradient(135deg, #e62b2b 33%, #ffffff 33%, #ffffff 66%, #070b19 66%); border-color: #e62b2b; color: #070b19; text-shadow: 0 0 8px #ffffff, 0 0 8px #ffffff; box-shadow: 0 0 15px rgba(230, 43, 43, 0.5);">
-                USA
+            <div class="theme-box" data-theme="lightning" style="background-color: #151500; border-color: #ffe600; color: #ffe600; box-shadow: 0 0 15px rgba(255, 230, 0, 0.5);">
+                Lightning
+            </div>
+            <div class="theme-box" data-theme="mystic" style="background: linear-gradient(135deg, #0a0015 40%, #2a005c 100%); border-color: #9d00ff; color: #df99ff; text-shadow: 0 0 5px #9d00ff; box-shadow: 0 0 15px rgba(157, 0, 255, 0.5);">
+                Mystic
             </div>
         </div>
     </div>

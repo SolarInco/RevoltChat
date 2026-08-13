@@ -37,22 +37,16 @@ function loadParticles(status) {
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
+                number: { value: 100, density: { enable: true, value_area: 800 } },
                 color: { value: particleColor },
                 shape: { type: "circle" },
-                opacity: { value: 0.6, random: true },
+                opacity: { value: 0.8, random: true },
                 size: { value: 4, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: particleColor,
-                    opacity: 0.4,
-                    width: 1
-                },
+                line_linked: { enable: false },
                 move: {
                     enable: true,
-                    speed: 2,
-                    direction: "none",
+                    speed: 1.5,
+                    direction: "bottom",
                     random: true,
                     straight: false,
                     out_mode: "out",
@@ -62,13 +56,9 @@ function loadParticles(status) {
             interactivity: {
                 detect_on: "canvas",
                 events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: true, mode: "push" },
+                    onhover: { enable: false },
+                    onclick: { enable: false },
                     resize: true
-                },
-                modes: {
-                    grab: { distance: 140, line_linked: { opacity: 1 } },
-                    push: { particles_nb: 4 }
                 }
             },
             retina_detect: true
@@ -95,12 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (docSnap.exists()) {
                     const data = docSnap.data();
                     
-                    if (data.theme && data.theme !== 'default') {
-                        document.documentElement.className = `theme-${data.theme}`;
-                        document.body.className = `theme-${data.theme}`;
-                    } else {
-                        document.documentElement.className = '';
-                        document.body.className = '';
+                    if (data.theme) {
+                        localStorage.setItem('revolt_theme', data.theme);
+                        if (data.theme !== 'default') {
+                            document.documentElement.className = `theme-${data.theme}`;
+                        } else {
+                            document.documentElement.className = '';
+                        }
                     }
                     
                     setTimeout(() => {
@@ -130,7 +121,7 @@ window.showNotification = function(message) {
         popup.style.bottom = '20px';
         popup.style.left = '50%';
         popup.style.transform = 'translateX(-50%)';
-        popup.style.backgroundColor = 'var(--border-color, #e60000)';
+        popup.style.backgroundColor = 'var(--border-color)';
         popup.style.color = '#fff';
         popup.style.padding = '10px 20px';
         popup.style.borderRadius = '5px';

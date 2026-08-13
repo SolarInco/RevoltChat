@@ -5,18 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REVOLT CHAT</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/chat.css">
     <style>
-        #snow-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-        }
-
         .nav-mini-icons a {
             display: inline-flex;
             align-items: center;
@@ -33,7 +24,7 @@
 
         .nav-mini-icons a:hover {
             background: rgba(230, 0, 0, 0.2);
-            box-shadow: 0 0 8px #e60000;
+            box-shadow: var(--accent-glow);
         }
 
         .room {
@@ -54,7 +45,8 @@
     </style>
 </head>
 <body>
-    <canvas id="snow-canvas"></canvas>
+    <div id="particles-js"></div>
+    <div class="wave-bg"></div>
 
     <div class="navbar">
         <div class="nav-left">
@@ -101,7 +93,7 @@
         </div>
     </div>
 
-    <script src="../js/particles.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         lucide.createIcons();
     </script>

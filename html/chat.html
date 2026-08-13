@@ -16,13 +16,14 @@
     <style>
         .navbar {
             border-bottom: 2px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 80%, black);
+            background: color-mix(in srgb, var(--bg-color) 70%, #000000);
             transition: all 0.3s ease;
         }
 
         .nav-title {
             color: var(--border-color);
-            text-shadow: 0 0 5px var(--border-color);
+            text-shadow: 0 0 8px var(--border-color);
+            transition: color 0.3s ease;
         }
 
         .nav-mini-icons a {
@@ -41,19 +42,20 @@
 
         .nav-mini-icons a:hover {
             background: color-mix(in srgb, var(--border-color) 20%, transparent);
-            box-shadow: 0 0 8px var(--border-color);
+            box-shadow: 0 0 10px var(--border-color);
         }
 
         #side-panel, #right-panel {
             border: 2px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 90%, transparent);
-            box-shadow: 0 0 10px color-mix(in srgb, var(--border-color) 20%, transparent);
+            background: color-mix(in srgb, var(--bg-color) 80%, #000000);
+            box-shadow: 0 0 15px color-mix(in srgb, var(--border-color) 25%, transparent);
             transition: all 0.3s ease;
         }
 
         #side-panel h2, #right-panel h2 {
             color: var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .room {
@@ -62,7 +64,7 @@
             border-radius: 6px;
             margin-bottom: 4px;
             transition: all 0.2s ease;
-            color: var(--text-color);
+            color: var(--border-color);
             opacity: 0.7;
         }
 
@@ -75,20 +77,21 @@
             background-color: color-mix(in srgb, var(--border-color) 30%, transparent);
             color: var(--border-color) !important;
             font-weight: bold;
-            border-left: 3px solid var(--border-color);
+            border-left: 4px solid var(--border-color);
             opacity: 1;
         }
 
         #revolt-count-display {
             color: var(--border-color);
             font-weight: bold;
-            text-shadow: 0 0 5px color-mix(in srgb, var(--border-color) 50%, transparent);
+            text-shadow: 0 0 8px color-mix(in srgb, var(--border-color) 60%, transparent);
             padding: 10px 0;
+            transition: color 0.3s ease;
         }
 
         #chat-app {
             border: 2px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 90%, transparent);
+            background: color-mix(in srgb, var(--bg-color) 80%, #000000);
             transition: all 0.3s ease;
         }
 
@@ -98,24 +101,25 @@
 
         #message-input {
             border: 1px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 70%, black);
+            background: color-mix(in srgb, var(--bg-color) 60%, #000000);
             color: var(--text-color);
         }
 
         #message-input:focus {
-            box-shadow: 0 0 5px var(--border-color);
+            box-shadow: 0 0 8px var(--border-color);
             outline: none;
         }
 
         #send-button {
             background-color: var(--border-color);
-            color: var(--bg-color);
+            color: #000000;
             font-weight: bold;
             border: none;
+            transition: all 0.3s ease;
         }
 
         #send-button:hover {
-            box-shadow: 0 0 10px var(--border-color);
+            box-shadow: 0 0 12px var(--border-color);
             filter: brightness(1.2);
         }
     </style>

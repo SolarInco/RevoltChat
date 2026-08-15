@@ -13,123 +13,13 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/chat.css">
-    <style>
-        .navbar {
-            border-bottom: 2px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 70%, #000000);
-            transition: all 0.3s ease;
-        }
-
-        .nav-title {
-            color: var(--border-color);
-            text-shadow: 0 0 8px var(--border-color);
-            transition: color 0.3s ease;
-        }
-
-        .nav-mini-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            color: var(--border-color);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            margin: 0 3px;
-        }
-
-        .nav-mini-icons a:hover {
-            background: color-mix(in srgb, var(--border-color) 20%, transparent);
-            box-shadow: 0 0 10px var(--border-color);
-        }
-
-        #side-panel, #right-panel {
-            border: 2px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 80%, #000000);
-            box-shadow: 0 0 15px color-mix(in srgb, var(--border-color) 25%, transparent);
-            transition: all 0.3s ease;
-        }
-
-        #side-panel h2, #right-panel h2 {
-            color: var(--border-color);
-            border-bottom: 2px solid var(--border-color);
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .room {
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-bottom: 4px;
-            transition: all 0.2s ease;
-            color: var(--border-color);
-            opacity: 0.7;
-        }
-
-        .room:hover {
-            background: color-mix(in srgb, var(--border-color) 15%, transparent);
-            opacity: 1;
-        }
-
-        .room.active {
-            background-color: color-mix(in srgb, var(--border-color) 30%, transparent);
-            color: var(--border-color) !important;
-            font-weight: bold;
-            border-left: 4px solid var(--border-color);
-            opacity: 1;
-        }
-
-        #revolt-count-display {
-            color: var(--border-color);
-            font-weight: bold;
-            text-shadow: 0 0 8px color-mix(in srgb, var(--border-color) 60%, transparent);
-            padding: 10px 0;
-            transition: color 0.3s ease;
-        }
-
-        #chat-app {
-            border: 2px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 80%, #000000);
-            transition: all 0.3s ease;
-        }
-
-        #input-container {
-            border-top: 2px solid var(--border-color);
-        }
-
-        #message-input {
-            border: 1px solid var(--border-color);
-            background: color-mix(in srgb, var(--bg-color) 60%, #000000);
-            color: var(--text-color);
-        }
-
-        #message-input:focus {
-            box-shadow: 0 0 8px var(--border-color);
-            outline: none;
-        }
-
-        #send-button {
-            background-color: var(--border-color);
-            color: #000000;
-            font-weight: bold;
-            border: none;
-            transition: all 0.3s ease;
-        }
-
-        #send-button:hover {
-            box-shadow: 0 0 12px var(--border-color);
-            filter: brightness(1.2);
-        }
-    </style>
 </head>
 <body>
     <div id="particles-js"></div>
 
     <div class="navbar">
         <div class="nav-left">
-            <a href="../home.html" class="back-btn" style="color: var(--border-color);">
+            <a href="../home.html" class="back-btn">
                 <i data-lucide="arrow-left" size="20"></i>
             </a>
             <div class="nav-title">REVOLT</div>
@@ -148,7 +38,7 @@
     <div class="main-container">
         <div id="side-panel">
             <h2>Rooms</h2>
-            <ul id="online-users-list" style="list-style: none; padding: 0;">
+            <ul id="online-users-list">
                 <li class="room active" data-room="General">General</li>
                 <li class="room" data-room="Gaming">Gaming</li>
                 <li class="room" data-room="Yap">Yap</li>

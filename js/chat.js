@@ -93,7 +93,7 @@ function loadRevolters() {
             count++;
             const userData = docSnap.data();
             const li = document.createElement('li');
-            li.innerHTML = `<i data-lucide="user" size="16" color="#00ff00"></i> <span>${userData.username || "User"}</span>`;
+            li.innerHTML = `<i data-lucide="user" size="16" style="color: var(--border-color);"></i> <span>${userData.username || "User"}</span>`;
             revoltUsersList.appendChild(li);
         });
         userCountSpan.textContent = count;
